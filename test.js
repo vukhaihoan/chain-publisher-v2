@@ -1,0 +1,1 @@
+const {ChainPublisher} = require('./dist/index')

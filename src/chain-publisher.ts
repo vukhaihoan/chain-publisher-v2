@@ -1,6 +1,6 @@
 import { rpcKnownError, delay } from './util'
 import Bluebird from 'bluebird'
-import _ from 'lodash'
+import * as _ from "lodash";
 import standardizeStartConfiguration from './validator'
 import { mergeRequests, partitionRequests, filterLogs, mergeUniqSortedLogs } from "./ethers-log-filter"
 

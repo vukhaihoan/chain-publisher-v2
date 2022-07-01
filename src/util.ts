@@ -1,6 +1,6 @@
 'use strict'
 import { ethers } from 'ethers'
-import _ from 'lodash'
+import * as _ from "lodash";
 
 // Description
 // * Asynchronous waiting.

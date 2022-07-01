@@ -1,6 +1,6 @@
 import Chain from '../src/index';
 import { JsonRpcProvider } from '@ethersproject/providers'
-import _ from 'lodash'
+import * as _ from "lodash";
 import { Contract } from 'ethers';
 const RPC = "https://bsc-dataseed.binance.org"
 let abi = [

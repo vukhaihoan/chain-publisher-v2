@@ -144,7 +144,8 @@ class ChainPublisher {
 
         let safeLogs = logs.filter(({ blockNumber }: any) => Number(blockNumber) <= safeBlock)
         await subcriber.applyLogs(this.config.storage, safeLogs)
-        // console.log(`\t --- SAFE   ${from} +${safeBlock - from + 1} :${safeLogs.length}\t${key} behind: ${this.context.head - safeBlock}`)
+
+        console.log(`\t --- SAFE   ${from} +${safeBlock - from + 1} :${safeLogs.length}\t${key} behind: ${this.context.head - safeBlock}`)
 
         let unsafeLogs = logs.filter(({ blockNumber }: any) => Number(blockNumber) > safeBlock)
 
@@ -158,7 +159,7 @@ class ChainPublisher {
             true
         )
 
-        // console.log(`\t --- UNSAFE ${safeBlock + 1} +${head - safeBlock - 1} :${unsafeLogs.length}\t${key}`)
+        console.log(`\t --- UNSAFE ${safeBlock + 1} +${head - safeBlock - 1} :${unsafeLogs.length}\t${key}`)
 
         await this.config.storage.setItem(key, {
             safeBlock,

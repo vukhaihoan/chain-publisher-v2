@@ -152,7 +152,7 @@ class ChainPublisher {
         await subcriber.applyLogs(
             {
                 setItem: (key: string, value: any) => memories.set(key, value),
-                getItem: (key: string) => this.config.storage.getItem(key),
+                getItem: (key: string) => memories.get(key),
                 removeItem: (key: string) => memories.set(key, REMOVE_KEY)
             },
             unsafeLogs,

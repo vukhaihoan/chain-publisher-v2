@@ -257,7 +257,9 @@ class ChainPublisher {
 
     async unSubscribe(key: string, allowRemoveState = true) {
         if (this.subscribers.has(key)) {
-            allowRemoveState && await this._removeState(key)
+            if (allowRemoveState) {
+                await this._removeState(key)
+            }
             this.subscribers.delete(key)
         }
     }
@@ -265,7 +267,9 @@ class ChainPublisher {
         const subscribers = this.subscribers[Symbol.iterator]();
 
         for (const [key] of subscribers) {
-            allowRemoveState && await this._removeState(key)
+            if (allowRemoveState) {
+                await this._removeState(key)
+            }
         }
 
         this.subscribers.clear()

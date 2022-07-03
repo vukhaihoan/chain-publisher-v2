@@ -255,12 +255,19 @@ class ChainPublisher {
         this.subscribers.set(validEvent.key, validEvent)
     }
 
-    unSubscribe(key: string) {
+    async unSubscribe(key: string, allowRemoveState = true) {
         if (this.subscribers.has(key)) {
+            allowRemoveState && await this._removeState(key)
             this.subscribers.delete(key)
         }
     }
-    unSubscribeAll(){
+    async unSubscribeAll(allowRemoveState = true) {
+        const subscribers = this.subscribers[Symbol.iterator]();
+
+        for (const [key] of subscribers) {
+            allowRemoveState && await this._removeState(key)
+        }
+
         this.subscribers.clear()
     }
     async getState(key: string) {
@@ -271,5 +278,8 @@ class ChainPublisher {
         return this.memories.get(key) ?? await this.config.storage.getItem(key)
     }
 
+    private _removeState = async (key: string) => {
+        await this.config.storage.removeItem(key)
+    }
 }
 export default ChainPublisher

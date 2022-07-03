@@ -260,6 +260,9 @@ class ChainPublisher {
             this.subscribers.delete(key)
         }
     }
+    unSubscribeAll(){
+        this.subscribers.clear()
+    }
     async getState(key: string) {
         if (this.memories.get(key) == REMOVE_KEY) {
             return null

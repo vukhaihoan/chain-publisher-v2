@@ -49,12 +49,13 @@ function _isProvider(provider:any) {
             'invalid configuration "provider". Please use lib assisted-json-rpc-provider'
         )
     }
+    // Note: Not work in browser when build prod
+    // if (!provider || !provider?.constructor?.name?.endsWith("JsonRpcProvider")) {
+    //     throw new ChainPublisherError(
+    //         'invalid configuration "provider". Please use lib assisted-json-rpc-provider'
+    //     )
+    // }
 
-    if (!provider || !provider?.constructor?.name?.endsWith("JsonRpcProvider")) {
-        throw new ChainPublisherError(
-            'invalid configuration "provider". Please use lib assisted-json-rpc-provider'
-        )
-    }
 }
 
 function _validateProvider(provider:any) {
